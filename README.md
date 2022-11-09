@@ -11,7 +11,7 @@ Type-safe coroutine-based event bus for Kotlin with Flow integration.
 ### Gradle (Kotlin DSL)
 
 ```kotlin
-implementation("com.philiprehberger:event-bus:0.1.6")
+implementation("com.philiprehberger:event-bus:0.2.0")
 ```
 
 ### Maven
@@ -20,7 +20,7 @@ implementation("com.philiprehberger:event-bus:0.1.6")
 <dependency>
     <groupId>com.philiprehberger</groupId>
     <artifactId>event-bus</artifactId>
-    <version>0.1.6</version>
+    <version>0.2.0</version>
 </dependency>
 ```
 
@@ -67,6 +67,22 @@ job.cancel()
 scope.cancel()
 ```
 
+### One-Time Events
+
+```kotlin
+// Automatically unsubscribes after the first matching event
+bus.once<UserCreated>(scope) { event ->
+    println("First user: ${event.name}")
+}
+```
+
+### Subscriber Monitoring
+
+```kotlin
+val count = bus.subscriberCount()
+println("Active subscribers: $count")
+```
+
 ## API
 
 | Class / Function | Description |
@@ -75,6 +91,8 @@ scope.cancel()
 | `EventBus.on<T>()` | Subscribe to events of type T within a CoroutineScope |
 | `EventBus.emit()` | Emit an event to all matching subscribers |
 | `EventBus.flow<T>()` | Get a Flow of events filtered to type T |
+| `EventBus.once<T>()` | Subscribe to only the first matching event |
+| `EventBus.subscriberCount()` | Get the number of active subscribers |
 
 ## Development
 
