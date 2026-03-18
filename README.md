@@ -1,6 +1,6 @@
 # kt-event-bus
 
-[![CI](https://github.com/philiprehberger/kt-event-bus/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/kt-event-bus/actions/workflows/ci.yml)
+[![CI](https://github.com/philiprehberger/kt-event-bus/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/kt-event-bus/actions/workflows/publish.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/com.philiprehberger/event-bus)](https://central.sonatype.com/artifact/com.philiprehberger/event-bus)
 
 Type-safe coroutine-based event bus for Kotlin with Flow integration.
