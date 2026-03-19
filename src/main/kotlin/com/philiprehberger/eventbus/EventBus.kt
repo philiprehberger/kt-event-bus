@@ -33,7 +33,7 @@ public class EventBus(
     replay: Int = 0,
     extraBufferCapacity: Int = 64,
 ) {
-    @PublishedApi internal val _events = MutableSharedFlow<Any>(
+    @PublishedApi internal val _events: MutableSharedFlow<Any> = MutableSharedFlow<Any>(
         replay = replay,
         extraBufferCapacity = extraBufferCapacity,
     )
