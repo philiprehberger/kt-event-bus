@@ -29,7 +29,7 @@ import kotlinx.coroutines.launch
  * @param replay The number of past events to replay to new subscribers (default 0).
  * @param extraBufferCapacity Additional buffer capacity beyond [replay] (default 64).
  */
-class EventBus(
+public class EventBus(
     replay: Int = 0,
     extraBufferCapacity: Int = 64,
 ) {
@@ -48,7 +48,7 @@ class EventBus(
      * @param handler Suspend function invoked for each matching event.
      * @return A [Job] that can be used to cancel the subscription.
      */
-    inline fun <reified T : Any> on(scope: CoroutineScope, noinline handler: suspend (T) -> Unit): Job {
+    public inline fun <reified T : Any> on(scope: CoroutineScope, noinline handler: suspend (T) -> Unit): Job {
         return scope.launch {
             _events.asSharedFlow()
                 .filterIsInstance<T>()
@@ -63,7 +63,7 @@ class EventBus(
      *
      * @param event The event to emit.
      */
-    suspend fun emit(event: Any) {
+    public suspend fun emit(event: Any) {
         _events.emit(event)
     }
 
@@ -81,7 +81,7 @@ class EventBus(
      * @param T The event type to filter for.
      * @return A Flow emitting only events of type [T].
      */
-    inline fun <reified T : Any> flow(): Flow<T> {
+    public inline fun <reified T : Any> flow(): Flow<T> {
         return _events.asSharedFlow().filterIsInstance()
     }
 }
