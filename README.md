@@ -1,13 +1,10 @@
-# kt-event-bus
+# event-bus
 
 [![CI](https://github.com/philiprehberger/kt-event-bus/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/kt-event-bus/actions/workflows/publish.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/com.philiprehberger/event-bus)](https://central.sonatype.com/artifact/com.philiprehberger/event-bus)
+[![License](https://img.shields.io/github/license/philiprehberger/kt-event-bus)](LICENSE)
 
 Type-safe coroutine-based event bus for Kotlin with Flow integration.
-
-## Requirements
-
-- Kotlin 1.9+ / Java 17+
 
 ## Installation
 
@@ -15,7 +12,7 @@ Type-safe coroutine-based event bus for Kotlin with Flow integration.
 
 ```kotlin
 dependencies {
-    implementation("com.philiprehberger:event-bus:0.1.0")
+    implementation("com.philiprehberger:event-bus:0.1.5")
 }
 ```
 
@@ -33,7 +30,7 @@ dependencies {
 <dependency>
     <groupId>com.philiprehberger</groupId>
     <artifactId>event-bus</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.5</version>
 </dependency>
 ```
 
