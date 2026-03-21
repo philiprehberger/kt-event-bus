@@ -1,6 +1,6 @@
 # event-bus
 
-[![CI](https://github.com/philiprehberger/kt-event-bus/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/kt-event-bus/actions/workflows/publish.yml)
+[![Tests](https://github.com/philiprehberger/kt-event-bus/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/kt-event-bus/actions/workflows/publish.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/com.philiprehberger/event-bus)](https://central.sonatype.com/artifact/com.philiprehberger/event-bus)
 [![License](https://img.shields.io/github/license/philiprehberger/kt-event-bus)](LICENSE)
 
@@ -11,17 +11,7 @@ Type-safe coroutine-based event bus for Kotlin with Flow integration.
 ### Gradle (Kotlin DSL)
 
 ```kotlin
-dependencies {
-    implementation("com.philiprehberger:event-bus:0.1.5")
-}
-```
-
-### Gradle (Groovy)
-
-```groovy
-dependencies {
-    implementation 'com.philiprehberger:event-bus:0.1.0'
-}
+implementation("com.philiprehberger:event-bus:0.1.6")
 ```
 
 ### Maven
@@ -30,7 +20,7 @@ dependencies {
 <dependency>
     <groupId>com.philiprehberger</groupId>
     <artifactId>event-bus</artifactId>
-    <version>0.1.5</version>
+    <version>0.1.6</version>
 </dependency>
 ```
 
