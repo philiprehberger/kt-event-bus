@@ -1,11 +1,13 @@
 package com.philiprehberger.eventbus
 
+import java.util.concurrent.atomic.AtomicInteger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.filterIsInstance
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 /**
@@ -83,5 +85,31 @@ public class EventBus(
      */
     public inline fun <reified T : Any> flow(): Flow<T> {
         return _events.asSharedFlow().filterIsInstance()
+    }
+
+    /**
+     * Subscribes to only the first event of type [T], then auto-cancels.
+     *
+     * @param T The event type to subscribe to.
+     * @param scope The coroutine scope that controls the subscription lifetime.
+     * @param handler Suspend function invoked for the first matching event.
+     * @return A [Job] that completes after the first event is handled.
+     */
+    public inline fun <reified T : Any> once(scope: CoroutineScope, noinline handler: suspend (T) -> Unit): Job {
+        return scope.launch {
+            val event = _events.asSharedFlow()
+                .filterIsInstance<T>()
+                .first()
+            handler(event)
+        }
+    }
+
+    /**
+     * Returns the number of active subscribers currently listening for events.
+     *
+     * @return The number of active subscribers.
+     */
+    public fun subscriberCount(): Int {
+        return _events.subscriptionCount.value
     }
 }

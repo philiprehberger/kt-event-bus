@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.0 (2026-03-31)
+
+- Add `once<T>()` for one-time event subscriptions that auto-cancel after the first event
+- Add `subscriberCount()` to get the number of active subscribers
+
 ## 0.1.7 (2026-03-31)
 
 - Standardize README to 3-badge format with emoji Support section

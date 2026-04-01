@@ -162,4 +162,46 @@ class EventBusTest {
         bus.emit(UserCreated("Alice"))
         assertTrue(true)
     }
+
+    @Test
+    fun `once receives only the first event then auto-cancels`() = runTest {
+        val bus = EventBus()
+        val received = mutableListOf<UserCreated>()
+
+        val job = bus.once<UserCreated>(this) { received.add(it) }
+        advanceUntilIdle()
+
+        bus.emit(UserCreated("Alice"))
+        advanceUntilIdle()
+
+        bus.emit(UserCreated("Bob"))
+        advanceUntilIdle()
+
+        // Should only have received the first event
+        assertEquals(1, received.size)
+        assertEquals("Alice", received[0].name)
+        assertTrue(job.isCompleted)
+    }
+
+    @Test
+    fun `subscriberCount tracks active subscribers`() = runTest {
+        val bus = EventBus()
+        assertEquals(0, bus.subscriberCount())
+
+        val job1 = bus.on<UserCreated>(this) { }
+        advanceUntilIdle()
+        assertEquals(1, bus.subscriberCount())
+
+        val job2 = bus.on<OrderPlaced>(this) { }
+        advanceUntilIdle()
+        assertEquals(2, bus.subscriberCount())
+
+        job1.cancel()
+        advanceUntilIdle()
+        assertEquals(1, bus.subscriberCount())
+
+        job2.cancel()
+        advanceUntilIdle()
+        assertEquals(0, bus.subscriberCount())
+    }
 }
